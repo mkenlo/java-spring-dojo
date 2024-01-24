@@ -10,6 +10,6 @@
 <body>
     <c:out value="${todayDate}" />
 
-   
+    <script src="js/script.js"></script>
 </body>
 </html>

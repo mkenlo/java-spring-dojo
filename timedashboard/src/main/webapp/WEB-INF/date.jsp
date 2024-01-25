@@ -5,10 +5,14 @@
 <head>
     <meta charset="UTF-8" />
     <title>Time Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 <body>
-    <c:out value="${todayDate}" />
+    <div class="main">
+        <h1><c:out value="${todayDate}" /></h1>
+    </div>
 
     <script src="js/script.js"></script>
 </body>

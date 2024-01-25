@@ -5,10 +5,16 @@
 <head>
     <meta charset="UTF-8" />
     <title>Time Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 <body>
-    <a href="/date">Date Template</a>
-    <a href="/time">Time Template</a>
+
+    <div class="main row">
+        <a href="/date">Date Template</a>
+        <a href="/time">Time Template</a>
+    </div>
+   
 </body>
 </html>

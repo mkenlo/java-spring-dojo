@@ -238,6 +238,6 @@ gradle-app.setting
 # Java heap dump
 *.hprof
 
-
+how-to-add-jsp-to-spring-project.md
 
 # End of https://www.toptal.com/developers/gitignore/api/java,maven,gradle,eclipse,intellij

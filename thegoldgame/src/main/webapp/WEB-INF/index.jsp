@@ -17,7 +17,7 @@
         <div class="row mb-5">
             <div class="col-md-3">
                 <label class="form-label"><strong>Your Gold: </strong> </label>
-                <input type="text" name="currentGold" value="0" class="btn btn-outline-primary">
+                <input type="text" name="currentGold" value="<c:out value='${user.totalGold}'/>" class="btn btn-outline-primary">
 
             </div>
         </div>
@@ -28,7 +28,9 @@
                     <div class="card-header"> Farm </div>
                     <div class="card-body">
                         <form action="/find" method="POST">
-                            <input type="hidden" name="farm">
+                            <input type="hidden" name="name" value="farm">
+                            <input type="hidden" name="minGold" value="10">
+                            <input type="hidden" name="maxGold" value="20">
                             <label class="form-label">Earns 10-20 gold</label>
                             <input type="submit" class="btn btn-warning" value="Find Gold">
 
@@ -41,7 +43,9 @@
                     <div class="card-header">Cave</div>
                     <div class="card-body">
                         <form action="/find" method="POST">
-                            <input type="hidden" name="cave">
+                            <input type="hidden" name="name" value="cave">
+                            <input type="hidden" name="minGold" value="5">
+                            <input type="hidden" name="maxGold" value="10">
                             <label class="form-label">Earns 5-10 gold</label>
                             <input type="submit" class="btn btn-warning" value="Find Gold">
                         </form>
@@ -54,12 +58,13 @@
                     <div class="card-header">House</div>
                     <div class="card-body">
                         <form action="/find" method="POST">
-                            <input type="hidden" name="house">
+                            <input type="hidden" name="name" value="house">
+                            <input type="hidden" name="minGold" value="2">
+                            <input type="hidden" name="maxGold" value="5">
                             <label class="form-label">Earns 2-5 gold</label>
                             <input type="submit" class="btn btn-warning" value="Find Gold">
                         </form>
                     </div>
-
                 </div>
             </div>
             <div class="col">
@@ -67,7 +72,9 @@
                     <div class="card-header">Quest</div>
                     <div class="card-body">
                         <form action="/find" method="POST">
-                            <input type="hidden" name="quest">
+                            <input type="hidden" name="name" value="quest">
+                            <input type="hidden" name="minGold" value="0">
+                            <input type="hidden" name="maxGold" value="50">
                             <label class="form-label">Earns/takes 0-50 gold</label>
                             <input type="submit" class="btn btn-warning" value="Find Gold">
                         </form>
@@ -78,13 +85,17 @@
         </div>
         <div class="row mt-5">
             <h2>Activities</h2>
-            <div class="">
+            <div class="border">
                 <ul class="list-group list-group-flush list-group-numbered">
-                    <li class="list-group-item">An item</li>
-                    <li class="list-group-item">A second item</li>
-                    <li class="list-group-item">A third item</li>
-                    <li class="list-group-item">A fourth item</li>
-                    <li class="list-group-item">And a fifth one</li>
+
+                    <c:forEach var="activity" items="${user.activities}">
+
+                        <li class="list-group-item <c:if test='${activity.isCompleted}'> text-success</c:if> <c:if test='${!activity.isCompleted}'> text-danger</c:if>">
+                            <c:out value="${activity.summary}" />                        
+                        </li>                  
+                    
+                    </c:forEach>
+                    
                 </ul>
             </div>
         </div>

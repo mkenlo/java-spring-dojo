@@ -33,11 +33,11 @@
                     </tr>
                 </thead>
                 <tbody class="table-striped table-group-divider">
-                    <!-- <c:forEach var="review" items="${reviews}" > 
+                    <!-- <c:forEach var="burger" items="${burgers}" > 
                         <tr>
-                            <td><c:out value="${review.burgerName}" /></td>
-                            <td><c:out value="${review.restaurantName}" /></td>
-                            <td><c:out value="${review.rating}" /></td>
+                            <td><c:out value="${burger.name}" /></td>
+                            <td><c:out value="${burger.restaurantName}" /></td>
+                            <td><c:out value="${burger.rating}" /></td>
                         </tr>
                     </c:forEach > -->
                         <tr>

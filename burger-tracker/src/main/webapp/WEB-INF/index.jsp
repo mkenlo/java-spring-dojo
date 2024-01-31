@@ -65,8 +65,7 @@
 
                     <div class="mb-3">
                         <select class="form-select" aria-label="rating dropdown" name="rating">
-                            <option selected>What's your rating?</option>
-                            <option value="0">0</option>
+                            <option selected value="0">What's your rating?</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>

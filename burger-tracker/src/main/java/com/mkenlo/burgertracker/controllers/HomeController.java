@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.mkenlo.burgertracker.models.Burger;
 import com.mkenlo.burgertracker.services.BurgerService;
+
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -30,9 +33,10 @@ public class HomeController {
     }
 
     @PostMapping("/add")
-    public String addReview(@ModelAttribute("burger") Burger burger, BindingResult bindingResult) {
+    public String addReview(@Valid @ModelAttribute("burger") Burger burger, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            System.out.println(bindingResult.getAllErrors());
+            List<Burger> burgers = burgerService.getAllBurgerReviews();
+            model.addAttribute("burgers", burgers);
             return "index.jsp";
         } else {
             burgerService.addBurgerReview(burger);

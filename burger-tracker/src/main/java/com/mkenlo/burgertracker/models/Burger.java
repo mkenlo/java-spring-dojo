@@ -21,10 +21,12 @@ public class Burger {
 
     @Column
     @NonNull
+    @NotBlank(message = "Burger Name is required")
     private String name;
 
     @Column
     @NonNull
+    @NotBlank(message = "Restaurant Name is required")
     private String restaurantName;
 
     @Column
@@ -32,8 +34,8 @@ public class Burger {
 
     @Column
     @NonNull
-    @Max(value = 5)
-    @Min(value = 0)
+    @Max(value = 5, message = "Rating should not be greater than 5")
+    @Min(value = 1, message = "Rating should not be less than 1")
     private Integer rating;
 
     public Long getId() {

@@ -1,5 +1,7 @@
 package com.mkenlo.burgertracker.models;
 
+import org.springframework.lang.NonNull;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,21 +20,21 @@ public class Burger {
     private Long id;
 
     @Column
-    @NotBlank(message = "Name is mandatory ")
+    @NonNull
     private String name;
 
     @Column
-    @NotBlank(message = "Restaurant Name is mandatory ")
+    @NonNull
     private String restaurantName;
 
     @Column
     private String notes;
 
     @Column
-    @NotBlank(message = "Rating is mandatory")
+    @NonNull
     @Max(value = 5)
     @Min(value = 0)
-    private int rating;
+    private Integer rating;
 
     public Long getId() {
         return id;

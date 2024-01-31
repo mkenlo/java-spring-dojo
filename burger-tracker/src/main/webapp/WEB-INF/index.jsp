@@ -1,15 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
+<%@ page isErrorPage="true" %>  
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8" />
-    <title>Burger TRacker</title>
+    <title>Burger Tracker</title>
         <!-- for Bootstrap CSS -->
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/css/style.css"/>
     <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 
 
@@ -33,24 +32,59 @@
                     </tr>
                 </thead>
                 <tbody class="table-striped table-group-divider">
-                    <!-- <c:forEach var="burger" items="${burgers}" > 
+                    <c:forEach var="burger" items="${burgers}" > 
                         <tr>
                             <td><c:out value="${burger.name}" /></td>
                             <td><c:out value="${burger.restaurantName}" /></td>
                             <td><c:out value="${burger.rating}" /></td>
                         </tr>
-                    </c:forEach > -->
-                        <tr>
-                            <td>Krabby Patty</td>
-                            <td>Krusty Krab</td>
-                            <td>4</td>
-                        </tr>
+                    </c:forEach > 
+                        
                     
                 </tbody>
             </table>        
         </div>
 
-        <div class="row">
+        <div class="row py-3">
+
+            <h2>Add a review</h2>
+
+           <div class="col-4">
+           
+                <form:form modelAttribute="burger" action="/add" method="POST">
+                    <div class="mb-3">
+                        <label for="burgerName" class="form-label">Burger Name</label>
+                        <input type="text" class="form-control" id="burgerName" name="name">
+                        <form:errors path="name" cssClass="text-danger"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="restaurantName" class="form-label">Restaurant Name</label>
+                        <input type="text" class="form-control" id="restaurantName" name="restaurantName">
+                        <form:errors path="restaurantName" cssClass="text-danger"/>
+                    </div>
+
+                    <div class="mb-3">
+                        <select class="form-select" aria-label="rating dropdown" name="rating">
+                            <option selected>What's your rating?</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>  
+                         <form:errors path="rating" cssClass="text-danger"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="notes" class="form-label">Addititional notes</label>
+                        <textarea class="form-control" id="notes" rows="3"></textarea> 
+                         <form:errors path="notes" cssClass="text-danger"/>                  
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form:form>
+           
+           
+           </div>
         
         
         </div>

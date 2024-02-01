@@ -12,7 +12,7 @@ import com.mkenlo.savetravels.models.Expense;
 @RequestMapping("/expenses")
 public class MainController {
 
-    @GetMapping("/")
+    @GetMapping("")
     public String index() {
         return "index.jsp";
     }
@@ -25,4 +25,11 @@ public class MainController {
         return "expense-detail.jsp";
     }
 
+    @GetMapping("/edit/{id}")
+    public String showEditExpense(@PathVariable long id, Model model) {
+        Expense expense = new Expense(1000, "Tallahasse Flamingo", "Florida", 12300.55,
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua");
+        model.addAttribute("expense", expense);
+        return "edit-expense.jsp";
+    }
 }

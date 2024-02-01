@@ -16,7 +16,7 @@
 <body>
 
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-      <h5 class="my-0 mr-md-auto font-weight-normal">Burger Tracker</h5>
+      <h5 class="my-0 mr-md-auto font-weight-normal"><a href="/">Burger Tracker</a></h5>
       
     </div>
 
@@ -26,9 +26,10 @@
             <table class="table table-light table-hover">
                 <thead class="table-dark">
                     <tr>
-                    <th scope="col">Burger Name</th>
-                    <th scope="col">Restaurant Name</th>
-                    <th scope="col">Rating (out of 5)</th>
+                        <th scope="col">Burger Name</th>
+                        <th scope="col">Restaurant Name</th>
+                        <th scope="col">Rating (out of 5)</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody class="table-striped table-group-divider">
@@ -37,6 +38,7 @@
                             <td><c:out value="${burger.name}" /></td>
                             <td><c:out value="${burger.restaurantName}" /></td>
                             <td><c:out value="${burger.rating}" /></td>
+                            <td><a href="/edit/<c:out value='${burger.id}'/>" >Edit</a></td>
                         </tr>
                     </c:forEach > 
                         
@@ -76,7 +78,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="notes" class="form-label">Addititional notes</label>
-                        <textarea class="form-control" id="notes" rows="3"></textarea> 
+                        <textarea class="form-control" id="notes" rows="3" name="notes"></textarea> 
                          <form:errors path="notes" cssClass="text-danger"/>                  
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>

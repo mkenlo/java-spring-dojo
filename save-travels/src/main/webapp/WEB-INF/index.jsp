@@ -18,7 +18,7 @@
 <body>
     <fmt:setLocale value = "en_US"/>
     <div class="d-flex align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-        <h5 class="my-0 mr-md-auto font-weight-normal"><a href="/">Save Travels</a></h5>
+        <h5 class="my-0 mr-md-auto font-weight-normal"><a href="/expenses">Save Travels</a></h5>
     </div>
 
     <div class="container">
@@ -37,18 +37,18 @@
                 <tbody class="table-striped table-group-divider">
                     <c:forEach var="expense" items="${expenses}" > 
                         <tr>
-                            <td><a href="/edit/<c:out value='${expense.id}'/>"><c:out value="${expense.name}" /></a></td>
+                            <td><a href="/expenses/detail/<c:out value='${expense.id}'/>"><c:out value="${expense.name}" /></a></td>
                             <td><c:out value="${expense.vendor}" /></td>
-                            <td><fmt:formatNumber value="${expense.amount}" type="currency" /></td>
-                            <td><a href="/edit/<c:out value='${expense.id}'/>" >Edit</a> | <a href="/delete/<c:out value='${expense.id}'/>" class="btn btn-danger">Delete</a></td>
+                            <td></td>
+                            <td><a href="/expenses/edit/<c:out value='${expense.id}'/>" >Edit</a> | <a href="/expenses/delete/<c:out value='${expense.id}'/>" class="btn btn-danger">Delete</a></td>
                         </tr>
                     </c:forEach >   
                     <c:set var="money" value="${12300.55}" />
                     <tr>
-                            <td><a href="/edit/1000">Tallahasse flamingo</a></td>
+                            <td><a href="expenses/detail/1000">Tallahasse flamingo</a></td>
                             <td>Florida</td>
                             <td><fmt:formatNumber value="${money}" type="currency" /></td>
-                            <td><a href="/edit/1000" >Edit</a> | <a href="/delete/1000" class="btn btn-danger">Delete</a></td>
+                            <td><a href="/expenses/edit/1000" >Edit</a> | <a href="/expenses/delete/1000" class="btn btn-danger">Delete</a></td>
                         </tr>                   
                     
                 </tbody>
@@ -58,7 +58,7 @@
             <h2 class="text-danger-subtle p-3">Add an expense</h2>
              <div class="col-9">
            
-                <form:form modelAttribute="expense" action="/add" method="POST">
+                <form:form modelAttribute="expense" action="/expenses/add" method="POST">
                     <div class="row mb-4">
 
                         <div class="col-3">

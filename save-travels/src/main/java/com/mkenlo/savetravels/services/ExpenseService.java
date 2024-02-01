@@ -3,9 +3,12 @@ package com.mkenlo.savetravels.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
 import com.mkenlo.savetravels.models.Expense;
 import com.mkenlo.savetravels.repositories.ExpenseRepository;
 
+@Service
 public class ExpenseService {
 
     ExpenseRepository repo;
@@ -14,11 +17,11 @@ public class ExpenseService {
         this.repo = repo;
     }
 
-    List<Expense> getAllExpenses() {
+    public List<Expense> getAllExpenses() {
         return repo.findAll();
     }
 
-    Expense getById(long id) {
+    public Expense getById(long id) {
         Optional<Expense> optional = repo.findById(id);
         if (optional.isPresent())
             return optional.get();
@@ -26,11 +29,11 @@ public class ExpenseService {
         return null;
     }
 
-    Expense save(Expense expense) {
+    public Expense save(Expense expense) {
         return repo.save(expense);
     }
 
-    void deleteById(long id) {
+    public void deleteById(long id) {
         repo.deleteById(id);
     }
 

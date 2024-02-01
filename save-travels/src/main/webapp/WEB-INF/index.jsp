@@ -39,17 +39,10 @@
                         <tr>
                             <td><a href="/expenses/detail/<c:out value='${expense.id}'/>"><c:out value="${expense.name}" /></a></td>
                             <td><c:out value="${expense.vendor}" /></td>
-                            <td></td>
+                            <td><fmt:formatNumber value="${expense.amount}" type="currency" /></td>
                             <td><a href="/expenses/edit/<c:out value='${expense.id}'/>" >Edit</a> | <a href="/expenses/delete/<c:out value='${expense.id}'/>" class="btn btn-danger">Delete</a></td>
                         </tr>
                     </c:forEach >   
-                    <c:set var="money" value="${12300.55}" />
-                    <tr>
-                            <td><a href="expenses/detail/1000">Tallahasse flamingo</a></td>
-                            <td>Florida</td>
-                            <td><fmt:formatNumber value="${money}" type="currency" /></td>
-                            <td><a href="/expenses/edit/1000" >Edit</a> | <a href="/expenses/delete/1000" class="btn btn-danger">Delete</a></td>
-                        </tr>                   
                     
                 </tbody>
             </table>       

@@ -27,7 +27,7 @@
             <h2 class="text-danger-subtle p-3">Edit an expense</h2>
              <div class="col-9">
            
-                <form:form modelAttribute="expense" action="/expenses/edit/<c:out value='${expense.id}' />" method="POST">
+                <form:form modelAttribute="expense" action="/expenses/edit/${expense.id}" method="PUT">
                     <div class="row mb-4">
 
                         <div class="col-3">

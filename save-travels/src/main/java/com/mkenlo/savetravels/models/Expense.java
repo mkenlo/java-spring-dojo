@@ -1,11 +1,33 @@
 package com.mkenlo.savetravels.models;
 
-public class Expense {
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 
+public class Expense {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private long id;
+
+    @Column
+    @NotNull(message = "Expense's name must not be empty")
     private String name;
+
+    @Column
+    @NotNull(message = "Vendor's name must not be empty")
     private String vendor;
+
+    @Column
+    @NotNull(message = "Amount value must not be empty")
+    @Min(value = 0, message = "Amount value must be greater than 0")
     private double amount;
+
+    @Column
+    @NotNull(message = "Description name must not be empty")
     private String description;
 
     public Expense() {

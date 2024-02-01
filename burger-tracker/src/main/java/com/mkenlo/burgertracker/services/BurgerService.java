@@ -1,6 +1,7 @@
 package com.mkenlo.burgertracker.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -20,8 +21,16 @@ public class BurgerService {
         return burgerRepository.findAll();
     }
 
-    public Burger addBurgerReview(Burger burger) {
+    public Burger saveBurgerReview(Burger burger) {
         return burgerRepository.save(burger);
     }
+
+    public Burger findById(Long id){
+        Optional<Burger> optional = burgerRepository.findById(id);
+        if(optional.isPresent()) return optional.get();
+        return null;
+    }
+
+    
 
 }

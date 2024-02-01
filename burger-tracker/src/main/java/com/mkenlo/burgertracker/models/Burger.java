@@ -30,6 +30,7 @@ public class Burger {
     private String restaurantName;
 
     @Column
+    @NonNull
     private String notes;
 
     @Column

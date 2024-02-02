@@ -17,7 +17,7 @@
 </head>
 <body>
     <fmt:setLocale value = "en_US"/>
-    <div class="d-flex align-items-center p-3 px-md-4 mb-3 bg-dark-subtle border-bottom box-shadow">
+    <div class="d-flex align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
         <h5 class="my-0 mr-md-auto font-weight-normal"><a href="/expenses">Save Travels</a></h5>
     </div>
 
@@ -34,7 +34,7 @@
                             <label for="expenseName" class="form-label ml-3">Expense Name <span class="text-danger">*</span>: </label>
                         </div>
                         <div class="col-6">
-                            <input type="text" class="form-control" id="expenseName" name="name" value="<c:out value='${expense.name}' />">
+                            <input type="text" class="form-control" id="expenseName" name="name" value="${expense.name}">
                             <form:errors path="name" cssClass="text-danger fw-lighter fst-italic"/>
                         </div>                    
                         
@@ -44,7 +44,7 @@
                             <label for="vendor" class="form-label">Vendor <span class="text-danger">*</span>: </label>
                         </div>
                         <div class="col-6">
-                            <input type="text" class="form-control" id="vendor" name="vendor" value="<c:out value='${expense.vendor}' />">
+                            <input type="text" class="form-control" id="vendor" name="vendor" value="${expense.vendor}">
                             <form:errors path="vendor" cssClass="text-danger fw-lighter fst-italic"/>
                         </div>       
                     </div>
@@ -54,7 +54,7 @@
                             <label for="amount" class="form-label">Amount <span class="text-danger">*</span>: </label>
                         </div>
                         <div class="col-6">
-                            <input type="number" class="form-control" id="amount" name="amount" value="<c:out value='${expense.amount}'/>">
+                            <input type="number" class="form-control" id="amount" name="amount" value="${expense.amount}">
                             <form:errors path="amount" cssClass="text-danger fw-lighter fst-italic"/>
                         </div>
                         
@@ -65,7 +65,7 @@
                             <label for="desc" class="form-label">Description <span class="text-danger">*</span>:</label>
                         </div>
                         <div class="col-6">
-                            <textarea class="form-control" id="desc" rows="6" name="description" placeholder="Describe the expense"><c:out value="${expense.description}" /></textarea> 
+                            <textarea class="form-control" id="desc" rows="6" name="description" placeholder="Describe the expense">${expense.description}</textarea> 
                             <form:errors path="description" cssClass="text-danger fw-lighter fst-italic"/>                        
                         </div>
                       </div>

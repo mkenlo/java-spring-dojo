@@ -37,10 +37,10 @@
                 <tbody class="table-striped table-group-divider">
                     <c:forEach var="expense" items="${expenses}" > 
                         <tr>
-                            <td><a href="/expenses/detail/<c:out value='${expense.id}'/>"><c:out value="${expense.name}" /></a></td>
-                            <td><c:out value="${expense.vendor}" /></td>
+                            <td><a href="/expenses/detail/${expense.id}">${expense.name}</a></td>
+                            <td>${expense.vendor}</td>
                             <td><fmt:formatNumber value="${expense.amount}" type="currency" /></td>
-                            <td><a href="/expenses/edit/<c:out value='${expense.id}'/>" >Edit</a> | <a href="/expenses/delete/<c:out value='${expense.id}'/>" class="btn btn-danger">Delete</a></td>
+                            <td><a href="/expenses/edit/${expense.id}" >Edit</a> | <a href="/expenses/delete/${expense.id}" class="btn btn-danger">Delete</a></td>
                         </tr>
                     </c:forEach >   
                     

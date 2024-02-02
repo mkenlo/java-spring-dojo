@@ -16,7 +16,7 @@
 </head>
 <body>
     <fmt:setLocale value = "en_US"/>
-    <div class="d-flex align-items-center p-3 px-md-4 mb-3 bg-dark-subtle border-bottom box-shadow">
+    <div class="d-flex align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
         <h5 class="my-0 mr-md-auto font-weight-normal"><a href="/expenses">Save Travels</a></h5>
     </div>
 
@@ -29,7 +29,7 @@
                             <label>Expense Name : </label>
                         </div>
                         <div class="col-6">
-                            <p><c:out value="${expense.name}" /></p>
+                            <p>${expense.name}</p>
                         </div>
                     </div>
 
@@ -38,7 +38,7 @@
                             <label>Description :</label>
                         </div>
                         <div class="col-6">
-                            <p><c:out value="${expense.description}" /></p>
+                            <p>${expense.description}</p>
                         </div>
                     </div>  
 
@@ -47,7 +47,7 @@
                             <label>Vendor : </label>
                         </div>
                         <div class="col-6">
-                            <p><c:out value="${expense.vendor}" /></p>
+                            <p>${expense.vendor}</p>
                         </div>       
                     </div>
 

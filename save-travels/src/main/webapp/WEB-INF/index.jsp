@@ -23,6 +23,10 @@
 
     <div class="container">
 
+        <c:if test="${alert!=null}" >        
+            <div class="alert alert-success alert-dismissible fade show" role="alert">${alert}</div>
+        </c:if>
+
         <div class="row mb-4">
             <h2 class="text-danger-subtle p-3">All Expenses</h2>
             <table class="table table-light table-hover">
@@ -34,13 +38,22 @@
                         <th>Actions</th>
                     </tr>
                 </thead>
+
                 <tbody class="table-striped table-group-divider">
                     <c:forEach var="expense" items="${expenses}" > 
                         <tr>
                             <td><a href="/expenses/detail/${expense.id}">${expense.name}</a></td>
                             <td>${expense.vendor}</td>
                             <td><fmt:formatNumber value="${expense.amount}" type="currency" /></td>
-                            <td><a href="/expenses/edit/${expense.id}" >Edit</a> | <a href="/expenses/delete/${expense.id}" class="btn btn-danger">Delete</a></td>
+                            <td class="d-flex">
+                                <a href="/expenses/edit/${expense.id}" class="px-2">Edit</a> | 
+
+                                <form action="/expenses/delete/${expense.id}" method="post" class="px-2">
+                                    <input type="hidden" name="_method" value="delete">
+                                    <input type="submit" value="Delete" class="btn btn-danger">
+                                </form>
+                                
+                            </td>
                         </tr>
                     </c:forEach >   
                     

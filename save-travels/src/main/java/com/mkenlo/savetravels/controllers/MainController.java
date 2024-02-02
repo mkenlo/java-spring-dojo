@@ -3,11 +3,13 @@ package com.mkenlo.savetravels.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mkenlo.savetravels.models.Expense;
 import com.mkenlo.savetravels.services.ExpenseService;
@@ -68,6 +70,13 @@ public class MainController {
             return "index.jsp";
         }
         expenseSvc.save(expense);
+        return "redirect:/expenses";
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public String delExpense(@PathVariable long id, RedirectAttributes redirect) {
+        expenseSvc.deleteById(id);
+        redirect.addFlashAttribute("alert", "Deletion was successfull");
         return "redirect:/expenses";
     }
 }

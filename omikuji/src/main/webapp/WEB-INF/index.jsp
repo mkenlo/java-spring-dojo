@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,13 +18,13 @@
     <div class="container">
         <h1>Send an Omikuji</h1>
         <div class="col-sm-6 border border-secondary border-2 center p-4">
-            <form action="/omikuji/submit" method="POST" class="row">
+            <form:form action="/omikuji/submit" method="POST" class="row" modelAttribute="words">
 
                 <div class="mb-3">
                     <label for="input1" class="form-label">Pick any number from 5 to 25</label>
                     <select name="year" class="form-select">
                         <c:forEach var="i" begin="5" end="25">
-                            <option value="<c:out value='${i}'/>"><c:out value="${i}"/></option>
+                            <option value="${i}">${i}</option>
                         </c:forEach>
                     </select>
                 </div>
@@ -54,7 +55,7 @@
                     <input type="submit" class="btn btn-primary" name="Send" id="submit">
                 </div>
 
-            </form>
+            </form:form>
 
         </div>
     </div>

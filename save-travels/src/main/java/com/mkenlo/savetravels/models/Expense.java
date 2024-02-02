@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -17,10 +18,12 @@ public class Expense {
 
     @Column
     @NotNull(message = "Expense's name must not be empty")
+    @NotBlank(message = "Expense's name must not be empty")
     private String name;
 
     @Column
     @NotNull(message = "Vendor's name must not be empty")
+    @NotBlank(message = "Vendor's name must not be empty")
     private String vendor;
 
     @Column
@@ -30,6 +33,7 @@ public class Expense {
 
     @Column
     @NotNull(message = "Description name must not be empty")
+    @NotBlank(message = "Description name must not be empty")
     private String description;
 
     public Expense() {

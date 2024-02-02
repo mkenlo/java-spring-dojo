@@ -15,7 +15,6 @@ import com.mkenlo.savetravels.services.ExpenseService;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 @RequestMapping("/expenses")
@@ -35,7 +34,7 @@ public class MainController {
 
     @GetMapping("/detail/{id}")
     public String detailExpense(@PathVariable long id, Model model) {
-        // @TODO add a 404 page in case of Object not found
+        // TODO add a 404 page in case of Object not found
 
         Expense expense = expenseSvc.getById(id);
         model.addAttribute("expense", expense);

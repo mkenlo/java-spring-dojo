@@ -54,7 +54,7 @@
                             <label for="amount" class="form-label">Amount <span class="text-danger">*</span>: </label>
                         </div>
                         <div class="col-6">
-                            <input type="number" class="form-control" id="amount" name="amount" value="${expense.amount}">
+                            <input type="number" class="form-control" id="amount" name="amount" value="${expense.amount}" min="0">
                             <form:errors path="amount" cssClass="text-danger fw-lighter fst-italic"/>
                         </div>
                         

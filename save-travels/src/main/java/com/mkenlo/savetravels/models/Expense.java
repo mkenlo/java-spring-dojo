@@ -28,7 +28,7 @@ public class Expense {
 
     @Column
     @NotNull(message = "Amount value must not be empty")
-    @Min(value = 0, message = "Amount value must be greater than 0")
+    @Min(value = 1, message = "Amount value must be greater than 0")
     private double amount;
 
     @Column

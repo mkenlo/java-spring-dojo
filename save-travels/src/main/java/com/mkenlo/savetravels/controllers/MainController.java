@@ -36,8 +36,6 @@ public class MainController {
 
     @GetMapping("/detail/{id}")
     public String detailExpense(@PathVariable long id, Model model) {
-        // TODO add a 404 page in case of Object not found
-
         Expense expense = expenseSvc.getById(id);
         model.addAttribute("expense", expense);
         return "expense-detail.jsp";
@@ -45,7 +43,6 @@ public class MainController {
 
     @GetMapping("/edit/{id}")
     public String showEditExpense(@PathVariable long id, Model model) {
-        // TODO add a 404 page in case of Object not found
 
         Expense expense = expenseSvc.getById(id);
         model.addAttribute("expense", expense);

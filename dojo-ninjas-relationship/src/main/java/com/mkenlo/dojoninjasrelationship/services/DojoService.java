@@ -21,11 +21,15 @@ public class DojoService {
         return repository.findAll();
     }
 
-    Dojo findById(long id) {
+    public Dojo findById(long id) {
         Optional<Dojo> optional = repository.findById(id);
         if (optional.isPresent())
             return optional.get();
         return null;
+    }
+
+    public Dojo save(Dojo dojo) {
+        return repository.save(dojo);
     }
 
 }

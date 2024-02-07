@@ -21,11 +21,15 @@ public class NinjaService {
         return repository.findAll();
     }
 
-    Ninja findById(long id) {
+    public Ninja findById(long id) {
         Optional<Ninja> optional = repository.findById(id);
         if (optional.isPresent())
             return optional.get();
         return null;
+    }
+
+    public Ninja save(Ninja ninja) {
+        return repository.save(ninja);
     }
 
 }

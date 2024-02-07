@@ -7,31 +7,29 @@
 <html>
 <head>
     <meta charset="UTF-8" />
-    <title>Hello</title>
+    <title>Add a dojo</title>
         <!-- for Bootstrap CSS -->
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/css/style.css"/>
     <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 
 
 </head>
 <body>
     <div class="container">
-        <h2>New Dojo</h2>
+        <h2 class="mt-3 mb-3">New Dojo</h2>
 
-        <form:form action="/dojos/new" method="POST" modelAttribute="dojo">
-        
-            <div class="input-group mb-3">
+        <div class="col-6">
+            <form:form action="/dojos/new" method="POST" modelAttribute="dojo">
+            
+                <div class="input-group mb-3">
+                    
+                    <input type="text" name="name" class="form-control" placeholder="Dojo's name" aria-label="Dojo's name" aria-describedby="button-addon2">
+                    <button class="btn btn-outline-primary" type="submit" id="button-addon2">Create</button>
+                    <form:errors path="name" cssClass="text-danger fw-lighter fst-italic"/>
+                </div>
                 
-                <input type="text" name="name" class="form-control" placeholder="Dojo's name" aria-label="Dojo's name" aria-describedby="button-addon2">
-                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Create</button>
-                <form:errors path="name" cssClass="text-danger fw-lighter fst-italic"/>
-            </div>
-        </form:form>
-    
-       
-
-    
+            </form:form>        
+        </div>    
     </div>
 </body>
 </html>

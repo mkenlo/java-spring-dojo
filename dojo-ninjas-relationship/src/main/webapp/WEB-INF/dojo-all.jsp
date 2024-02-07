@@ -4,17 +4,16 @@
 <html>
 <head>
     <meta charset="UTF-8" />
-    <title>Hello</title>
+    <title>Dojo and Ninjas</title>
         <!-- for Bootstrap CSS -->
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/css/style.css"/>
     <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 
 
 </head>
 <body>
     <div class="container">
-    
+        <h2 class="mt-3 mb-3">All Dojos</h2>
         <table class="table">
             <thead>
                 <tr>
@@ -34,6 +33,8 @@
                 
             </tbody>
         </table>
+        <a href="/dojos/new" class="btn btn-outline-danger" >Add a Dojo</a>
+        <a href="/ninjas/new" class="btn btn-outline-success" >Add ninjas</a>
     </div>
 </body>
 </html>

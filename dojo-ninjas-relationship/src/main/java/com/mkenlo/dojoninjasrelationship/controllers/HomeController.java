@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mkenlo.dojoninjasrelationship.models.Dojo;
+import com.mkenlo.dojoninjasrelationship.models.Ninja;
 import com.mkenlo.dojoninjasrelationship.services.DojoService;
 import com.mkenlo.dojoninjasrelationship.services.NinjaService;
 
@@ -56,6 +58,26 @@ public class HomeController {
         dojoService.save(dojo);
 
         return "redirect:/dojos";
+    }
+
+    @GetMapping("/ninjas/new")
+    public String showAddNinja(Model model) {
+        model.addAttribute("dojos", dojoService.findAll());
+        return "ninja-add.jsp";
+    }
+
+    @PostMapping("/ninjas/new")
+    public String addNinja(Model model, @Valid @ModelAttribute Ninja ninja, BindingResult result,
+            RedirectAttributes redirect) {
+        System.out.print("saving a new ninja");
+        if (result.hasErrors()) {
+            System.out.print(result);
+            model.addAttribute("dojos", dojoService.findAll());
+            return "ninja-add.jsp";
+        }
+        ninjaService.save(ninja);
+        redirect.addFlashAttribute("info", "A new Ninja has just been added!");
+        return "redirect:/dojos/" + ninja.getDojo().getId();
     }
 
 }

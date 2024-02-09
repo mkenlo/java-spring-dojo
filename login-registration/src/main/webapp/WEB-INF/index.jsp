@@ -24,6 +24,13 @@
             <h1 class="display-1 text-primary">Welcome </h1>
             <h2 class="text-primary-emphasis">Join our growing community</h2>
         </div>
+        <div class="row p-2">
+            <c:if test="${registerSuccess!=null}" >
+                <div class="alert alert-success" role="alert">
+                <h4 class="alert-heading">Yay!</h4>
+                    <p>${registerSuccess}</p>            
+            </c:if>        
+        </div>
         <div class="row">
             <div class="col-4 p-2">
                 <h3>Create an account</h3>
@@ -72,17 +79,17 @@
                 <form action="/login" method="POST">
                     <div class="input-group mb-3">
                         <div class="form-floating">
-                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
+                            <input type="email" class="form-control" id="loginEmail" placeholder="name@example.com"
                                 name="email">
-                            <label for="floatingInput">Email address</label>
+                            <label for="loginEmail">Email address</label>
                         </div>
                         <form:errors path="email" class="invalid-feedback" />
                     </div>
                     <div class="input-group mb-3">
                         <div class="form-floating">
-                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
+                            <input type="password" class="form-control" id="loginPassword" placeholder="Password"
                                 name="password">
-                            <label for="floatingPassword">Password</label>
+                            <label for="loginPassword">Password</label>
                         </div>
                         <form:errors path="password" class="invalid-feedback" />
                     </div>

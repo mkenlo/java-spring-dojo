@@ -31,7 +31,7 @@ public class Book {
     private String review;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "users_id")
     private User reviewer;
 
     public Book() {

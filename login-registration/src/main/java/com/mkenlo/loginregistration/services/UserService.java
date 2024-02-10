@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
+import com.mkenlo.loginregistration.models.LoginUser;
 import com.mkenlo.loginregistration.models.User;
 import com.mkenlo.loginregistration.repositories.UserRepository;
 
@@ -15,6 +16,13 @@ public class UserService {
 
     @Autowired
     UserRepository repository;
+
+    public User findById(long id) {
+        Optional<User> optional = repository.findById(id);
+        if (optional.isEmpty())
+            return null;
+        return optional.get();
+    }
 
     public User createUser(User user, BindingResult result) {
 
@@ -30,13 +38,13 @@ public class UserService {
         return repository.save(user);
     }
 
-    public User doLogin(User user, BindingResult result) {
+    public User doLogin(LoginUser user, BindingResult result) {
 
         Optional<User> potentialUser = repository.findByEmail(user.getEmail());
         if (!potentialUser.isPresent()) {
             result.rejectValue("email", "exist", "Email not found");
-        }
-        if (!BCrypt.checkpw(user.getPassword(), potentialUser.get().getPassword()))
+            // return null;
+        } else if (!BCrypt.checkpw(user.getPassword(), potentialUser.get().getPassword()))
             result.rejectValue("password", "match", "Invalid Password");
         if (result.hasErrors())
             return null;

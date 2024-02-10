@@ -8,7 +8,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet"
@@ -31,14 +31,14 @@
             <span class="navbar-brand mb-0 h1 text-primary">Dashboard</span>
             <div class="d-flex justify-content-end p-2">
                 <span class="material-symbols-outlined">account_circle</span>
-                <strong class="text-primary-emphasis">Joe Dalton</strong>&nbsp;&nbsp;&nbsp;
+                <strong class="text-primary-emphasis">${user.userName}</strong>&nbsp;&nbsp;&nbsp;
                 <a href="/logout"> Logout</a>
             </div>
         </div>
     </nav>
 
     <div class="container bg-gray p-3">
-        <h1 class="my-3 text-primary-emphasis display-3">Welcome Joe Dalton</h1>
+        <h1 class="my-3 text-primary-emphasis display-3">Welcome ${user.userName}</h1>
         <p> This is your dashboard</p>
     </div>
 

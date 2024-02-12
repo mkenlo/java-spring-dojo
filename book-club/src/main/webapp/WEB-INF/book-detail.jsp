@@ -29,7 +29,14 @@
     <nav class="navbar bg-body-secondary shadow-sm">
         <div class="container">
             <span class="navbar-brand mb-0 h1 text-primary"><a href="/books">The Book Club</a></span>
-            <div class="d-flex justify-content-end p-2">
+            
+
+            <nav class="nav">
+                
+            </nav>
+
+            <div class="nav d-flex justify-content-end p-2">
+                
                 <span class="material-symbols-outlined">account_circle</span>
                 <strong class="text-primary-emphasis">${user.name}</strong>&nbsp;&nbsp;&nbsp;
                 <a href="/logout"> Logout</a>
@@ -38,35 +45,25 @@
     </nav>
 
     <div class="container bg-gray p-3">
-        <h1 class="my-3 text-primary-emphasis display-3">Welcome, ${user.name}</h1>
-        <div class="d-flex justify-content-between p-3">
-            <h4>Books from everyone's shelves</h4>
-            <a href="/books/new">+ Add a book to the shelf</a>
         
+        <div class="d-flex justify-content-between py-2  mb-3">
+            <h4 class="text-primary-emphasis">${book.title}</h4>
+            <a href="/books">Back to Shelf</a>
         </div>
         <div class="row">
        
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">Author</th>
-                        <th scope="col">Posted By</th>
-                    </tr>
-                </thead>
-                <tbody class="table-hover">
-                    <c:forEach var="book" items="${books}" >
-                        <tr>
-                            <td>${book.id}</td>
-                            <td><a href="/books/${book.id}">${book.title} </a>   </td>
-                            <td>${book.author}</td>
-                            <td>${book.reviewer.name}</td>
-                        </tr>
-                    </c:forEach >                    
-                </tbody>
-            </table>     
-       
+            <em><span class="text-primary">${book.reviewer.name}</span> read <strong class="text-primary-emphasis">${book.title}</strong> by <span class="text-success">${book.author}</span></em>
+            <p>Here are <span>${book.reviewer.name}</span>'s thoughts</p> 
+            <div class="border-primary border-top border-bottom border-1 mb-3">                
+                <blockquote class="blockquote p-3">
+                    <p>${book.review}</p>
+                </blockquote>                
+            </div>
+
+            <div class="col-sm-4">
+                <a href="/books/${book.id}/edit" class="btn btn-outline-primary">Edit</a>
+            <a href="/books/${book.id}/delete" class="btn btn-outline-danger">Delete</a>
+            </div>
         </div>
     </div>
 

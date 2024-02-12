@@ -28,37 +28,33 @@
         </div>
         
         <div class="row">
-            <div class="col-md-4 col-sm-6 p-2">
+            <div class="col-md-4 col-sm-6 p-2 mt-3" >
                 <h3>Create an account</h3>
                 <form:form action="/register" method="POST" modelAttribute="newUser">
                     <div class="mb-3">
                         <div class="form-floating">
-                            <input type="text" class="form-control" id="fullname" placeholder="joedalton"
-                                name="name">
+                            <input type="text" class="form-control" id="fullname" name="name">
                             <label for="fullname">Name</label>
                         </div>
                         <form:errors path="name" class="errors" />
                     </div>
                     <div class="mb-3">
                         <div class="form-floating">
-                            <input type="email" class="form-control" id="email" placeholder="name@example.com"
-                                name="email">
+                            <input type="email" class="form-control" id="email" name="email">
                             <label for="email">Email address</label>
                         </div>
                         <form:errors path="email" class="errors" />
                     </div>
                     <div class="mb-3">
                         <div class="form-floating">
-                            <input type="password" class="form-control" id="newPassword" placeholder="Password"
-                                name="password">
+                            <input type="password" class="form-control" id="newPassword" name="password">
                             <label for="newPassword">Password</label>
                         </div>
                         <form:errors path="password" class="errors" />
                     </div>
                     <div class="mb-3">
                         <div class="form-floating">
-                            <input type="password" class="form-control" id="confirmPassword"
-                                placeholder="Confirm Password" name="confirm">
+                            <input type="password" class="form-control" id="confirmPassword" name="confirm">
                             <label for="confirmPassword">Confirm Password</label>
                         </div>
                         <form:errors path="confirm" class="errors" />
@@ -84,8 +80,7 @@
                 <form:form action="/login" method="POST" modelAttribute="newLogin">               
                     <div class="mb-3">
                         <div class="form-floating">
-                            <input type="email" class="form-control" id="loginEmail" placeholder="name@example.com"
-                                name="email">
+                            <input type="email" class="form-control" id="loginEmail" name="email">
                             <label for="loginEmail">Email address</label>
                         </div>
                         <form:errors path="email" class="errors" />                        
@@ -93,8 +88,7 @@
                     
                     <div class="mb-3">
                         <div class="form-floating">
-                            <input type="password" class="form-control" id="loginPassword" placeholder="Password"
-                                name="password">
+                            <input type="password" class="form-control" id="loginPassword" name="password">
                             <label for="loginPassword">Password</label>
                         </div>
                         <form:errors path="password" class="errors"  />

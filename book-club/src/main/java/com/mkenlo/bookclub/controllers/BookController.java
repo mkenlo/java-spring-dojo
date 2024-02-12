@@ -48,7 +48,7 @@ public class BookController {
     }
 
     @GetMapping("/{bookId}")
-    public String showBookDetail(@PathVariable("bookId") Long id, Model model) {
+    public String showBookDetail(@PathVariable("bookId") Long id, Model model, HttpSession session) {
         Book book = bookService.getABook(id);
         model.addAttribute("book", book);
         return "book-detail.jsp";

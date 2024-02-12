@@ -33,7 +33,6 @@ public class LoginController {
 
         User loggedUser = userService.doLogin(user, result);
         if (result.hasErrors()) {
-            model.addAttribute("newLogin", new LoginUser());
             return "index.jsp";
         }
 
@@ -48,7 +47,6 @@ public class LoginController {
 
         User newUser = userService.createUser(user, result);
         if (result.hasErrors()) {
-            model.addAttribute("newLogin", new LoginUser());
             return "index.jsp";
         }
         session.setAttribute("userId", newUser.getId());

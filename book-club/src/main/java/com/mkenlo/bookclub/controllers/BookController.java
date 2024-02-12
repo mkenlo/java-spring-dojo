@@ -55,12 +55,20 @@ public class BookController {
     }
 
     @PostMapping("/new")
-    public String addABook(@Valid @ModelAttribute Book book, BindingResult result) {
+    public String addABook(@Valid @ModelAttribute("newBook") Book book, BindingResult result) {
+        if (result.hasErrors()) {
+            return "book-add.jsp";
+        }
+        bookService.createBook(book);
         return "redirect:/books";
     }
 
     @GetMapping("/new")
-    public String showNewbookForm() {
+    public String showNewbookForm(HttpSession session, RedirectAttributes redirect) {
+        if (session.getAttribute("userId") == null) {
+            redirect.addFlashAttribute("loginRequired", "Sorry, you need to login before.");
+            return "redirect:/";
+        }
         return "book-add.jsp";
     }
 

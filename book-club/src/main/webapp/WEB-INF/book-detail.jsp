@@ -17,19 +17,20 @@
 </head>
 
 <body>
+
+    <c:set var="userName" value="You" scope="page" />
+    <c:set var="userPronoun" value="your" scope="page"/>
+    <c:if test="${userId!=book.reviewer.id}">
+        <c:set var="userName" value="${book.reviewer.name}"/>
+        <c:set var="userPronoun" value="${book.reviewer.name}"/>
+    </c:if>
     <nav class="navbar bg-body-secondary shadow-sm">
         <div class="container">
             <span class="navbar-brand mb-0 h1 text-primary"><a href="/books">The Book Club</a></span>
-            
-
-            <nav class="nav">
-                
-            </nav>
-
             <div class="nav d-flex justify-content-end p-2">
                 
                 <span class="material-symbols-outlined">account_circle</span>
-                <strong class="text-primary-emphasis">${user.name}</strong>&nbsp;&nbsp;&nbsp;
+                <strong class="text-primary-emphasis text-capitalize">${user.name}</strong>&nbsp;&nbsp;&nbsp;
                 <a href="/logout"> Logout</a>
             </div>
         </div>
@@ -41,20 +42,21 @@
             <h4 class="text-primary-emphasis">${book.title}</h4>
             <a href="/books">Back to Shelf</a>
         </div>
-        <div class="row">
-       
-            <em><span class="text-primary">${book.reviewer.name}</span> read <strong class="text-primary-emphasis">${book.title}</strong> by <span class="text-success">${book.author}</span></em>
-            <p>Here are <span>${book.reviewer.name}</span>'s thoughts</p> 
-            <div class="border-primary border-top border-bottom border-1 mb-3">                
+        <div class="row">       
+            <em><span class="text-primary text-capitalize">${userName}</span> read <strong class="text-primary-emphasis">${book.title}</strong> by <span class="text-info-emphasis"><u>${book.author}</u></span></em>
+            <p>Here are <span>${userPronoun}</span>'s thoughts</p> 
+            <div class="border-primary blue border-start border-4 mb-3">                
                 <blockquote class="blockquote p-3">
                     <p>${book.review}</p>
                 </blockquote>                
             </div>
 
-            <div class="col-sm-4">
-                <a href="/books/${book.id}/edit" class="btn btn-outline-primary">Edit</a>
-            <a href="/books/${book.id}/delete" class="btn btn-outline-danger">Delete</a>
-            </div>
+            <c:if test="${userId==book.reviewer.id}">
+                <div class="col-sm-4">
+                    <a href="/books/${book.id}/edit" class="btn btn-outline-primary">Edit</a>
+                    <a href="/books/${book.id}/delete" class="btn btn-outline-danger">Delete</a>
+                </div>
+            </c:if>
         </div>
     </div>
 

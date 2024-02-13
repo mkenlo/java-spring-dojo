@@ -35,6 +35,13 @@
             <a href="/books/new">+ Add a book to the shelf</a>
         
         </div>
+        <div class="row p-2">
+            <c:if test="${notAuthorized!=null}" >
+                <div class="alert alert-danger" role="alert">
+                <h4 class="alert-heading">Oups!</h4>
+                    <p>${notAuthorized}</p>            
+            </c:if>        
+        </div>
         <div class="row">
        
             <table class="table table-hover">

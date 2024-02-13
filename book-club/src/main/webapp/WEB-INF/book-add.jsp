@@ -21,12 +21,6 @@
     <nav class="navbar bg-body-secondary shadow-sm">
         <div class="container">
             <span class="navbar-brand mb-0 h1 text-primary"><a href="/books">The Book Club</a></span>
-            
-
-            <nav class="nav">
-                
-            </nav>
-
             <div class="nav d-flex justify-content-end p-2">
                 
                 <span class="material-symbols-outlined">account_circle</span>

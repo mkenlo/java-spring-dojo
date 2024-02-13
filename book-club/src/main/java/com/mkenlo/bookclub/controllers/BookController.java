@@ -48,7 +48,12 @@ public class BookController {
     }
 
     @GetMapping("/{bookId}")
-    public String showBookDetail(@PathVariable("bookId") Long id, Model model, HttpSession session) {
+    public String showBookDetail(@PathVariable("bookId") Long id, Model model, HttpSession session,
+            RedirectAttributes redirect) {
+        if (session.getAttribute("userId") == null) {
+            redirect.addFlashAttribute("loginRequired", "Sorry, you need to login before.");
+            return "redirect:/";
+        }
         Book book = bookService.getABook(id);
         model.addAttribute("book", book);
         return "book-detail.jsp";
@@ -82,7 +87,7 @@ public class BookController {
         }
         Book bookToEdit = bookService.getABook(id);
         if (!bookToEdit.getReviewer().getId().equals(userId)) {
-            redirect.addFlashAttribute("nonAuthorized", "Sorry, you are not authorized.");
+            redirect.addFlashAttribute("notAuthorized", "Sorry, you are not authorized.");
             return "redirect:/books";
         }
         model.addAttribute("book", bookToEdit);

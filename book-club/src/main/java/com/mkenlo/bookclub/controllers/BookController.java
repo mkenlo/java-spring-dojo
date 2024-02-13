@@ -59,7 +59,7 @@ public class BookController {
         if (result.hasErrors()) {
             return "book-add.jsp";
         }
-        bookService.createBook(book);
+        bookService.saveBook(book);
         return "redirect:/books";
     }
 
@@ -73,12 +73,31 @@ public class BookController {
     }
 
     @GetMapping("/{bookId}/edit")
-    public String showBookToEdit(@PathVariable("bookId") long id) {
+    public String showBookToEdit(@PathVariable("bookId") long id, HttpSession session, RedirectAttributes redirect,
+            Model model) {
+        Long userId = (Long) session.getAttribute("userId");
+        if (userId == null) {
+            redirect.addFlashAttribute("loginRequired", "Sorry, you need to login before.");
+            return "redirect:/";
+        }
+        Book bookToEdit = bookService.getABook(id);
+        if (!bookToEdit.getReviewer().getId().equals(userId)) {
+            redirect.addFlashAttribute("nonAuthorized", "Sorry, you are not authorized.");
+            return "redirect:/books";
+        }
+        model.addAttribute("book", bookToEdit);
         return "book-edit.jsp";
     }
 
     @PutMapping("/{bookId}/edit")
-    public String updateABook(@PathVariable("bookId") long id) {
+    public String updateABook(@PathVariable("bookId") long id, @Valid @ModelAttribute Book book, BindingResult result,
+            Model model) {
+        if (result.hasErrors()) {
+            System.out.println(result);
+            model.addAttribute("book", bookService.getABook(id));
+            return "book-edit.jsp";
+        }
+        bookService.saveBook(book);
         return "redirect:/books";
     }
 

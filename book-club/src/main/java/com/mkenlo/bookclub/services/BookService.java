@@ -23,8 +23,8 @@ public class BookService {
         return bookRepository.findAll();
     }
 
-    // creates a book
-    public Book createBook(Book b) {
+    // create or edit a book
+    public Book saveBook(Book b) {
         return bookRepository.save(b);
     }
 
@@ -36,21 +36,6 @@ public class BookService {
         } else {
             return null;
         }
-    }
-
-    public Book updateBook(Long id, String title, String author, String review, User reviewer) {
-        Optional<Book> optionalBook = bookRepository.findById(id);
-        if (optionalBook.isPresent()) {
-            Book book = optionalBook.get();
-            book.setTitle(title);
-            book.setAuthor(author);
-            book.setReview(review);
-            book.setReviewer(reviewer);
-            bookRepository.save(book);
-
-            return book;
-        } else
-            return null;
     }
 
 }

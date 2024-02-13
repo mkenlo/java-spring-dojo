@@ -37,6 +37,7 @@ public class BookService {
         }
     }
 
+    // delete a book
     public void deleteBook(long id) {
         bookRepository.deleteById(id);
     }

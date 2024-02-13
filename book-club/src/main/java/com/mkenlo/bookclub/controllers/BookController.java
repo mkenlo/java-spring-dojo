@@ -52,17 +52,21 @@ public class BookController {
     @GetMapping("/{bookId}")
     public String showBookDetail(@PathVariable("bookId") Long id, Model model, HttpSession session,
             RedirectAttributes redirect) {
+        // restrict access only to logged user
         if (session.getAttribute("userId") == null) {
             redirect.addFlashAttribute("loginRequired", "Sorry, you need to login before.");
             return "redirect:/";
         }
         Book book = bookService.getABook(id);
         model.addAttribute("book", book);
+        long userId = (Long) session.getAttribute("userId");
+        model.addAttribute("user", userService.findById(userId));
         return "book-detail.jsp";
     }
 
     @PostMapping("/new")
     public String addABook(@Valid @ModelAttribute("newBook") Book book, BindingResult result) {
+        // if the form input has errors, display errors to user
         if (result.hasErrors()) {
             return "book-add.jsp";
         }
@@ -71,11 +75,14 @@ public class BookController {
     }
 
     @GetMapping("/new")
-    public String showNewbookForm(HttpSession session, RedirectAttributes redirect) {
+    public String showNewbookForm(HttpSession session, RedirectAttributes redirect, Model model) {
+        // restrict access only to logged user
         if (session.getAttribute("userId") == null) {
             redirect.addFlashAttribute("loginRequired", "Sorry, you need to login before.");
             return "redirect:/";
         }
+        long userId = (Long) session.getAttribute("userId");
+        model.addAttribute("user", userService.findById(userId));
         return "book-add.jsp";
     }
 
@@ -83,24 +90,28 @@ public class BookController {
     public String showBookToEdit(@PathVariable("bookId") long id, HttpSession session, RedirectAttributes redirect,
             Model model) {
         Long userId = (Long) session.getAttribute("userId");
+        // restrict access only to logged user
         if (userId == null) {
             redirect.addFlashAttribute("loginRequired", "Sorry, you need to login before.");
             return "redirect:/";
         }
         Book bookToEdit = bookService.getABook(id);
+        // restrict book update only to the book reviewer
         if (!bookToEdit.getReviewer().getId().equals(userId)) {
             redirect.addFlashAttribute("notAuthorized", "Sorry, you are not authorized.");
             return "redirect:/books";
         }
         model.addAttribute("book", bookToEdit);
+        model.addAttribute("user", userService.findById(userId));
         return "book-edit.jsp";
     }
 
     @PutMapping("/{bookId}/edit")
-    public String updateABook(@PathVariable("bookId") long id, @Valid @ModelAttribute Book book, BindingResult result,
+    public String updateABook(@PathVariable("bookId") long id, @Valid @ModelAttribute("updateBook") Book book,
+            BindingResult result,
             Model model) {
+        // if the form input has errors, display errors to user
         if (result.hasErrors()) {
-            System.out.println(result);
             model.addAttribute("book", bookService.getABook(id));
             return "book-edit.jsp";
         }
@@ -110,6 +121,7 @@ public class BookController {
 
     @DeleteMapping("/{bookId}/delete")
     public String deleteBook(@PathVariable("bookId") long id, HttpSession session, RedirectAttributes redirect) {
+        // restrict access only to logged user
         if (session.getAttribute("userId") == null) {
             redirect.addFlashAttribute("loginRequired", "Sorry, you need to login before.");
             return "redirect:/";

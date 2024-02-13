@@ -39,7 +39,7 @@
         <div class="row">
             <div class="col-md-6 col-sm-12">
         
-                <form:form action="/books/${book.id}/edit" method="put" modelAttribute="book">
+                <form:form action="/books/${book.id}/edit" method="put" modelAttribute="updateBook">
                     <div class="mb-3">
                         <div class="form-floating">
                             <input type="text" class="form-control" id="book-title" name="title" value="${book.title}">

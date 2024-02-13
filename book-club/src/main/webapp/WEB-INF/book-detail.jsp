@@ -22,7 +22,7 @@
     <c:set var="userPronoun" value="your" scope="page"/>
     <c:if test="${userId!=book.reviewer.id}">
         <c:set var="userName" value="${book.reviewer.name}"/>
-        <c:set var="userPronoun" value="${book.reviewer.name}"/>
+        <c:set var="userPronoun" value="${book.reviewer.name}'s"/>
     </c:if>
     <nav class="navbar bg-body-secondary shadow-sm">
         <div class="container">
@@ -44,7 +44,7 @@
         </div>
         <div class="row">       
             <em><span class="text-primary text-capitalize">${userName}</span> read <strong class="text-primary-emphasis">${book.title}</strong> by <span class="text-info-emphasis"><u>${book.author}</u></span></em>
-            <p>Here are <span>${userPronoun}</span>'s thoughts</p> 
+            <p>Here are <span class="text-capitalize">${userPronoun}</span> thoughts</p> 
             <div class="border-primary blue border-start border-4 mb-3">                
                 <blockquote class="blockquote p-3">
                     <p>${book.review}</p>
@@ -54,9 +54,31 @@
             <c:if test="${userId==book.reviewer.id}">
                 <div class="col-sm-4">
                     <a href="/books/${book.id}/edit" class="btn btn-outline-primary">Edit</a>
-                    <a href="/books/${book.id}/delete" class="btn btn-outline-danger">Delete</a>
+                    <button type="button" class="btn btn-outline-danger"  data-bs-toggle="modal" data-bs-target="#deletion-modal">Delete</a>
                 </div>
             </c:if>
+        </div>
+    </div>
+
+    <div class="modal" tabindex="-1" id="deletion-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Deletion Confirmation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Do you want to delete this book entry: "<strong class="text-primary-emphasis">${book.title}</strong>"?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                <form action="/books/${book.id}/delete" method="post">
+                    <input type="hidden" value="delete" name="_method">
+                    <button type="submit" class="btn btn-danger">Yes, delete</button>
+                </form> 
+                
+            </div>
+            </div>
         </div>
     </div>
 

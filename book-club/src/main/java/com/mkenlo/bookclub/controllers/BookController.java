@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,7 @@ import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/books")
@@ -103,6 +105,17 @@ public class BookController {
             return "book-edit.jsp";
         }
         bookService.saveBook(book);
+        return "redirect:/books";
+    }
+
+    @DeleteMapping("/{bookId}/delete")
+    public String deleteBook(@PathVariable("bookId") long id, HttpSession session, RedirectAttributes redirect) {
+        if (session.getAttribute("userId") == null) {
+            redirect.addFlashAttribute("loginRequired", "Sorry, you need to login before.");
+            return "redirect:/";
+        }
+        bookService.deleteBook(id);
+        redirect.addFlashAttribute("alert", "Deletion was successfull");
         return "redirect:/books";
     }
 

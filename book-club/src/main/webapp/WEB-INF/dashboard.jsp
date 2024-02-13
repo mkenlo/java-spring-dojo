@@ -40,7 +40,12 @@
                 <div class="alert alert-danger" role="alert">
                 <h4 class="alert-heading">Oups!</h4>
                     <p>${notAuthorized}</p>            
-            </c:if>        
+            </c:if>     
+            <c:if test="${alert!=null}" >
+                <div class="alert alert-success" role="alert">
+                <h4 class="alert-heading">Yay!</h4>
+                    <p>${alert}</p>            
+            </c:if>    
         </div>
         <div class="row">
        
@@ -58,8 +63,8 @@
                         <tr>
                             <td>${book.id}</td>
                             <td><a href="/books/${book.id}">${book.title} </a>   </td>
-                            <td>${book.author}</td>
-                            <td>${book.reviewer.name}</td>
+                            <td class="text-capitalize">${book.author}</td>
+                            <td class="text-capitalize">${book.reviewer.name}</td>
                         </tr>
                     </c:forEach >                    
                 </tbody>
